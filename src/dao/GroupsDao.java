@@ -40,7 +40,7 @@ public class GroupsDao {
         session.close();
     }
 
-    //delete?
+    //delete
     public void delete(Groups groups) {
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
