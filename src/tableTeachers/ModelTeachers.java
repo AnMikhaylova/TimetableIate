@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
 public class ModelTeachers extends DefaultTableModel{
     
     private ArrayList<Teachers> data = new ArrayList<>();
-    private String[] colNames = {"ФИО", "Электронная почта"};
+    private String[] colNames = {"Р¤РРћ", "Р­Р»РµРєС‚СЂРѕРЅРЅР°СЏ РїРѕС‡С‚Р°"};
     private Class[] colClasses = {String.class, String.class};
     
     public void appendElem(Teachers teac){
