@@ -5,8 +5,10 @@
  */
 package dao;
 
+
 import entity.Subjects;
 import java.util.List;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import utils.NewHibernateUtil;
@@ -19,6 +21,13 @@ public class SubjectsDao {
     //findbyId
     public Subjects findById(int id){
         return (Subjects)NewHibernateUtil.getSessionFactory().openSession().get(Subjects.class, id);
+    }
+    
+    //findbyName
+    public Subjects findByName(String name){ 
+        String query = "FROM Subjects S WHERE S.subject =" + "'" + name + "'";
+        return (Subjects)NewHibernateUtil.getSessionFactory().openSession().createQuery(query).uniqueResult();
+       
     }
     
     //save

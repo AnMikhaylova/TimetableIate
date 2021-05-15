@@ -26,8 +26,8 @@ public class Classes implements java.io.Serializable {
     @Column(name = "class_id", unique = true, nullable = false)
     private int classId;
 
-    //@Column(name = "class", nullable = false) ///////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    private String class_;
+    @Column(name = "class", nullable = false) ///////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    private String class_name;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "classes")
     private Set<TimetableIate> timetableIates = new HashSet(0);
@@ -35,14 +35,14 @@ public class Classes implements java.io.Serializable {
     public Classes() {
     }
 
-    public Classes(int classId, String class_) {
+    public Classes(int classId, String class_name) {
         this.classId = classId;
-        this.class_ = class_;
+        this.class_name = class_name;
     }
 
-    public Classes(int classId, String class_, Set<TimetableIate> timetableIates) {
+    public Classes(int classId, String class_name, Set<TimetableIate> timetableIates) {
         this.classId = classId;
-        this.class_ = class_;
+        this.class_name = class_name;
         this.timetableIates = timetableIates;
     }
 
@@ -54,12 +54,12 @@ public class Classes implements java.io.Serializable {
         this.classId = classId;
     }
 
-    public String getClass_() {
-        return this.class_;
+    public String getClass_name() {
+        return this.class_name;
     }
 
-    public void setClass_(String class_) {
-        this.class_ = class_;
+    public void setClass_(String class_name) {
+        this.class_name = class_name;
     }
 
     public Set<TimetableIate> getTimetableIates() {

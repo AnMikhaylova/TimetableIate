@@ -23,6 +23,7 @@ public class student extends javax.swing.JFrame {
      */
     public student() {
         initComponents();
+        this.setLocationRelativeTo(null);
         GroupsService g = new GroupsService();
         List<Groups> allGroups = g.findAll();
         for (Groups gr: allGroups)
@@ -130,8 +131,6 @@ public class student extends javax.swing.JFrame {
         this.setVisible(false);
         String gr = (String) jComboBox1.getSelectedItem();
         String team = (String) jComboBox2.getSelectedItem();
-        System.out.println(gr);
-        System.out.println(team);
         new menu_student(gr,team).setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 

@@ -53,8 +53,7 @@ public class Tasks implements java.io.Serializable {
         this.deadline = deadline;
     }
 
-    public Tasks(int taskId, Controls controls, Subjects subjects, Date deadline, String description) {
-        this.taskId = taskId;
+    public Tasks(Controls controls, Subjects subjects, Date deadline, String description) {
         this.controls = controls;
         this.subjects = subjects;
         this.deadline = deadline;

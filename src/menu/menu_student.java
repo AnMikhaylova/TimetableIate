@@ -6,9 +6,15 @@
 package menu;
 
 import entity.Tasks;
+import entity.Teachers;
+import entity.TimetableIate;
 import java.util.List;
 import services.TasksService;
+import services.TeachersService;
+import services.TimetableIateService;
 import tableTasks.TableFrameTasks;
+import tableTeachers.TableFrameTeachers;
+import tableTimetable.TableFrameTimetable;
 
 /**
  *
@@ -24,6 +30,7 @@ public class menu_student extends javax.swing.JFrame {
      */
     public menu_student(String group, String team) {
         initComponents();
+        this.setLocationRelativeTo(null);
         this.group = group;
         this.team = team;
     }
@@ -45,9 +52,19 @@ public class menu_student extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButton1.setText("Расписание");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButton2.setText("Преподаватели");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButton3.setText("Задания");
@@ -89,9 +106,28 @@ public class menu_student extends javax.swing.JFrame {
 
         TasksService t = new TasksService();
         List<Tasks> list = t.findAll();
-     this.setVisible(false);
-        new TableFrameTasks(list).setVisible(true);
+        this.setVisible(false);
+        new TableFrameTasks(this, list).setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // teachers
+        
+        TeachersService teach = new TeachersService();
+        List<Teachers> list = teach.findAll();
+        this.setVisible(false);
+        new TableFrameTeachers(this, list).setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // timetable
+        
+        TimetableIateService ti =  new TimetableIateService();
+        List<TimetableIate> list = ti.findAll();
+        this.setVisible(false);
+        new TableFrameTimetable(this, list).setVisible(true);
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

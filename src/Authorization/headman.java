@@ -11,8 +11,7 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import menu.menu_headman;
 import services.GroupsService;
 import services.TeamsService;
 
@@ -27,6 +26,7 @@ public class headman extends javax.swing.JFrame {
      */
     public headman() {
         initComponents();
+        this.setLocationRelativeTo(null);
         GroupsService g = new GroupsService();
         List<Groups> allGroups = g.findAll();
         for (Groups gr : allGroups) {
@@ -148,37 +148,40 @@ public class headman extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     public static String md5Custom(String st) {
-    MessageDigest messageDigest = null;
-    byte[] digest = new byte[0];
+        MessageDigest messageDigest = null;
+        byte[] digest = new byte[0];
 
-    try {
-        messageDigest = MessageDigest.getInstance("MD5");
-        messageDigest.reset();
-        messageDigest.update(st.getBytes());
-        digest = messageDigest.digest();
-    } catch (NoSuchAlgorithmException e) {
-        // тут можно обработать ошибку
-        // возникает она если в передаваемый алгоритм в getInstance(,,,) не существует
-        e.printStackTrace();
+        try {
+            messageDigest = MessageDigest.getInstance("MD5");
+            messageDigest.reset();
+            messageDigest.update(st.getBytes());
+            digest = messageDigest.digest();
+        } catch (NoSuchAlgorithmException e) {
+            // тут можно обработать ошибку
+            // возникает она если в передаваемый алгоритм в getInstance(,,,) не существует
+            e.printStackTrace();
+        }
+
+        BigInteger bigInt = new BigInteger(1, digest);
+        String md5Hex = bigInt.toString(16);
+
+        while (md5Hex.length() < 32) {
+            md5Hex = "0" + md5Hex;
+        }
+
+        return md5Hex;
     }
 
-    BigInteger bigInt = new BigInteger(1, digest);
-    String md5Hex = bigInt.toString(16);
 
-    while( md5Hex.length() < 32 ){
-        md5Hex = "0" + md5Hex;
-    }
-
-    return md5Hex;
-}
-    
-    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         //enter
         String pasw = this.jPasswordField1.getText();
         String hashpasw = md5Custom(pasw);
-        System.out.println(hashpasw);
-        
+        this.setVisible(false);
+        String gr = (String) jComboBox1.getSelectedItem();
+        String team = (String) jComboBox2.getSelectedItem();
+        new menu_headman(gr,team).setVisible(true);
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

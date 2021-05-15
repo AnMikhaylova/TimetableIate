@@ -8,6 +8,7 @@ package editTeachers;
 
 import entity.Teachers;
 import java.util.List;
+import menu.menu_headman;
 
 /**
  *
@@ -17,10 +18,13 @@ public class EditTableFrameTeachers extends javax.swing.JFrame {
 
     private List<Teachers> list; 
     private ModelTeachers teachersmodel = new ModelTeachers();
+    private menu_headman parent;
     
-    public EditTableFrameTeachers(List<Teachers> l) {
+    public EditTableFrameTeachers(menu_headman p, List<Teachers> l) {
         initComponents();
         this.list = l;
+        this.parent = p;
+        this.setLocationRelativeTo(p);
         
         for (Teachers teac: list)
         {
@@ -44,6 +48,7 @@ public class EditTableFrameTeachers extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -69,6 +74,13 @@ public class EditTableFrameTeachers extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("Назад");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -81,7 +93,8 @@ public class EditTableFrameTeachers extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1)))
                 .addContainerGap())
         );
@@ -93,7 +106,9 @@ public class EditTableFrameTeachers extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
                 .addGap(8, 8, 8))
         );
 
@@ -112,10 +127,19 @@ public class EditTableFrameTeachers extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // back
+        
+        this.setVisible(false);
+        parent.setVisible(true);
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;

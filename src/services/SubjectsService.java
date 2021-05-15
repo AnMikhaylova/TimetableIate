@@ -26,6 +26,11 @@ public class SubjectsService {
         return subjectsDao.findById(id);
     }
     
+    //findbyName
+    public Subjects findByName(String name){
+        return subjectsDao.findByName(name);
+    }
+    
     //save
     public void save(Subjects subj) {
         subjectsDao.save(subj);
