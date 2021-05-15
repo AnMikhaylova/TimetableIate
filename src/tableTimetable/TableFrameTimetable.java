@@ -16,8 +16,8 @@ import menu.menu_student;
  * @author 79105
  */
 public class TableFrameTimetable extends javax.swing.JFrame {
-    
-    private List<TimetableIate> list; 
+
+    private List<TimetableIate> list;
     private ModelTimetable timetablemodelMon = new ModelTimetable();
     private ModelTimetable timetablemodelTue = new ModelTimetable();
     private ModelTimetable timetablemodelWed = new ModelTimetable();
@@ -27,45 +27,48 @@ public class TableFrameTimetable extends javax.swing.JFrame {
 
     public TableFrameTimetable(menu_student p, List<TimetableIate> l) {
         initComponents();
-        
+
         this.list = l;
         this.parent = p;
         this.setLocationRelativeTo(p);
-        
-        for (TimetableIate time: list)
-        {
-            switch (time.getWeekdays().getWeekday()){
-               
-                case "Monday" :
-                {
+
+        for (TimetableIate time : list) {
+            System.out.println(time.getWeekdays().getWeekday());
+            switch (time.getWeekdays().getWeekday()) {
+
+                case "Понедельник":
+
                     timetablemodelMon.appendElem(time);
-                    jTable1.setModel(timetablemodelMon);   
-                }
-                
-                case "Tuesday" : 
-                {
+                    break;
+
+                case "Вторник":
+
                     timetablemodelTue.appendElem(time);
-                    jTable2.setModel(timetablemodelTue);   
-                }
-                
-                case "Wednesday" : 
-                {
+                    break;
+
+                case "Среда":
+
                     timetablemodelWed.appendElem(time);
-                    jTable3.setModel(timetablemodelWed);   
-                }
-                
-                case "Thursday" :
-                {
+                    break;
+
+                case "Четверг":
+
                     timetablemodelThu.appendElem(time);
-                    jTable4.setModel(timetablemodelThu);   
-                }
-                
-                default : 
-                {
+                    break;
+
+                default:
+
                     timetablemodelFri.appendElem(time);
-                    jTable5.setModel(timetablemodelFri);   
-                }
-        }
+                    break;
+
+            }
+
+            jTable1.setModel(timetablemodelMon);
+            jTable2.setModel(timetablemodelTue);
+            jTable3.setModel(timetablemodelWed);
+            jTable4.setModel(timetablemodelThu);
+            jTable5.setModel(timetablemodelFri);
+
         }
     }
 
@@ -274,7 +277,7 @@ public class TableFrameTimetable extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        /*java.awt.EventQueue.invokeLater(new Runnable() {
+ /*java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new TableFrameTimetable().setVisible(true);
             }
@@ -300,4 +303,3 @@ public class TableFrameTimetable extends javax.swing.JFrame {
     private javax.swing.JTable jTable5;
     // End of variables declaration//GEN-END:variables
 }
-
