@@ -93,12 +93,12 @@ public class Teachers implements java.io.Serializable {
     }
     
     
-    public static void main(String[] args) {
-        
-        
-        TeachersService t = new TeachersService();
-        List<Teachers> list = t.findAll();
-        //new EditTableFrameTeachers(list).setVisible(true);
-        new EditTableFrameTeachers(list).setVisible(true);
-    }   
+//    public static void main(String[] args) {
+//        
+//        
+//        TeachersService t = new TeachersService();
+//        List<Teachers> list = t.findAll();
+//        //new EditTableFrameTeachers(list).setVisible(true);
+//        new EditTableFrameTeachers(list).setVisible(true);
+//    }   
 }

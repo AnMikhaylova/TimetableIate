@@ -5,6 +5,7 @@
  */
 package services;
 
+import dao.TasksDao;
 import entity.Tasks;
 import java.util.List;
 
@@ -14,36 +15,36 @@ import java.util.List;
  */
 public class TasksService {
     
-    private final TasksService tasksService;
+    private final TasksDao tasksDao;
     
     public TasksService(){
     
-        tasksService = new TasksService();
+        tasksDao = new TasksDao();
     }
     
     //findbyId
     public Tasks findById(int id){
-        return tasksService.findById(id);
+        return tasksDao.findById(id);
     }
     
     //save
     public void save(Tasks task) {
-        tasksService.save(task);
+        tasksDao.save(task);
     }
     
     //update
     public void update(Tasks task) {
-        tasksService.update(task);
+        tasksDao.update(task);
     }
     
     //delete?
      public void delete(Tasks task) {
-        tasksService.delete(task);
+        tasksDao.delete(task);
      }
      
     //findAll
      public List<Tasks> findAll() {
-         return tasksService.findAll();
+         return tasksDao.findAll();
      
      }
     
