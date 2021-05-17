@@ -21,6 +21,7 @@ public class TasksDao {
         return (Tasks)NewHibernateUtil.getSessionFactory().openSession().get(Tasks.class, id);
     }
     
+    
     //save
     public void save(Tasks task) {
         Session session = NewHibernateUtil.getSessionFactory().openSession();
@@ -38,6 +39,8 @@ public class TasksDao {
         tx1.commit();
         session.close();
     }
+    
+    
     
     //delete?
      public void delete(Tasks task) {

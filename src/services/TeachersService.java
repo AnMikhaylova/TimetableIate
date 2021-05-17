@@ -26,6 +26,11 @@ public class TeachersService {
         return teachersDao.findById(id);
     }
     
+    //findbyName
+    public Teachers findByName(String name){
+        return teachersDao.findByName(name);
+    }
+    
     //save
     public void save(Teachers teacher) {
         teachersDao.save(teacher);

@@ -9,9 +9,12 @@ import editTasks.EditTableFrameTasks;
 import editTeachers.EditTableFrameTeachers;
 import entity.Tasks;
 import entity.Teachers;
+import entity.TimetableIate;
 import java.util.List;
 import services.TasksService;
 import services.TeachersService;
+import services.TimetableIateService;
+import tableTimetable.TableFrameTimetable;
 
 
 /**
@@ -50,6 +53,11 @@ public class menu_headman extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButton1.setText("Расписание");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButton2.setText("Преподаватели");
@@ -112,6 +120,15 @@ public class menu_headman extends javax.swing.JFrame {
         this.setVisible(false);
         new EditTableFrameTasks(this, list).setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // timetable
+        
+        TimetableIateService ti =  new TimetableIateService();
+        List<TimetableIate> list = ti.findAll();
+        this.setVisible(false);
+        new TableFrameTimetable(this, list).setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     
 

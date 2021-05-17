@@ -21,6 +21,13 @@ public class TeachersDao {
         return (Teachers)NewHibernateUtil.getSessionFactory().openSession().get(Teachers.class, id);
     }
     
+    //findbyName
+    public Teachers findByName(String name){ 
+        String query = "FROM Teachers T WHERE T.teacherFio  =" + "'" + name + "'";
+        return (Teachers)NewHibernateUtil.getSessionFactory().openSession().createQuery(query).uniqueResult();
+       
+    }
+    
     //save
     public void save(Teachers teacher) {
         Session session = NewHibernateUtil.getSessionFactory().openSession();

@@ -9,14 +9,9 @@ package editTasks;
 import entity.Controls;
 import entity.Subjects;
 import entity.Tasks;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import menu.menu_headman;
-import menu.menu_student;
 import services.ControlsService;
 import services.SubjectsService;
 
@@ -58,7 +53,7 @@ public class EditTableFrameTasks extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("ЗАДАНИЯ");
@@ -138,20 +133,19 @@ public class EditTableFrameTasks extends javax.swing.JFrame {
         // edit
         
         int row = jTable1.getSelectedRow();
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        Date deadline = null;
-        try {
-            deadline = format.parse(jTable1.getModel().getValueAt(row,0).toString());
-        } catch (ParseException ex) {
-            Logger.getLogger(EditTableFrameTasks.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
+        Date deadline = Date.valueOf(jTable1.getModel().getValueAt(row,0).toString());
+        
         String subject = jTable1.getModel().getValueAt(row,1).toString();
         String control = jTable1.getModel().getValueAt(row,2).toString();
         String desc = jTable1.getModel().getValueAt(row,3).toString();
+        
         SubjectsService s = new SubjectsService();
-        ControlsService c = new ControlsService();
         Subjects subj = s.findByName(subject);
-        Controls cont = c.findById(1);
+        
+        ControlsService c = new ControlsService();        
+        Controls cont = c.findByName(control);
+        
         Tasks selTask = new Tasks(cont, subj, deadline, desc);
         this.setVisible(false);
         new EditTask(this, selTask).setVisible(true);

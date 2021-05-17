@@ -27,6 +27,11 @@ public class ControlsService {
         return controlsDao.findById(id);
     }
     
+    //findbyName
+    public Controls findByName(String name){
+        return controlsDao.findByName(name);
+    }
+    
     //findAll
      public List<Controls> findAll() {
          return controlsDao.findAll();

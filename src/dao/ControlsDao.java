@@ -20,6 +20,13 @@ public class ControlsDao {
         return (Controls)NewHibernateUtil.getSessionFactory().openSession().get(Controls.class, id);
     }
     
+    //findbyName
+    public Controls findByName(String name){ 
+        String query = "FROM Controls C WHERE C.control =" + "'" + name + "'";
+        return (Controls)NewHibernateUtil.getSessionFactory().openSession().createQuery(query).uniqueResult();
+       
+    }
+    
     //findAll
      public List<Controls> findAll() {
          List<Controls> c = (List<Controls>)NewHibernateUtil.getSessionFactory().openSession().createQuery("From Controls").list();
