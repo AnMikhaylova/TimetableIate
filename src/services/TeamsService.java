@@ -27,6 +27,11 @@ public class TeamsService {
         return teamsDao.findById(id);
     }
     
+    //findbyName
+    public Teams findByName(String name){
+        return teamsDao.findByName(name);
+    }
+    
     //findAll
      public List<Teams> findAll() {
          return teamsDao.findAll();

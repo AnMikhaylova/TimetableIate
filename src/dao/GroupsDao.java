@@ -21,6 +21,14 @@ public class GroupsDao {
     public Groups findById(int id) {
         return (Groups) NewHibernateUtil.getSessionFactory().openSession().get(Groups.class, id);
     }
+    
+    //findbyName
+    public Groups findByName(String name){ 
+        String query = "FROM Groups G WHERE G.groupName =" + "'" + name + "'";
+        return (Groups)NewHibernateUtil.getSessionFactory().openSession().createQuery(query).uniqueResult();
+        
+       
+    }
 
     //save
     public void save(Groups groups) {

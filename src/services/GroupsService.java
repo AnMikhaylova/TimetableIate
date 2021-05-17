@@ -28,6 +28,10 @@ public class GroupsService {
         return groupsDao.findById(id);
     }
 
+    //findbyName
+    public Groups findByName(String name){
+        return groupsDao.findByName(name);
+    }
     //save
     public void save(Groups groups) {
         groupsDao.save(groups);

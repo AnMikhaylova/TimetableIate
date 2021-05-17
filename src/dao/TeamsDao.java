@@ -19,6 +19,14 @@ public class TeamsDao {
         return (Teams)NewHibernateUtil.getSessionFactory().openSession().get(Teams.class, id);
     }
     
+    //findbyName
+    public Teams findByName(String name){ 
+        String query = "FROM Teams T WHERE T.team =" + "'" + name + "'";
+        return (Teams)NewHibernateUtil.getSessionFactory().openSession().createQuery(query).uniqueResult();
+        
+       
+    }
+    
     //findAll
      public List<Teams> findAll() {
          List<Teams> t = (List<Teams>)NewHibernateUtil.getSessionFactory().openSession().createQuery("From Teams").list();

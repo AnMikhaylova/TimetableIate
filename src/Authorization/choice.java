@@ -17,6 +17,7 @@ public class choice extends javax.swing.JFrame {
     public choice() {
         initComponents();
         this.setLocationRelativeTo(null);
+        
     }
 
     /**
@@ -76,13 +77,13 @@ public class choice extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // headman
         this.setVisible(false);
-        new headman().setVisible(true);
+        new headman(this).setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // student
         this.setVisible(false);
-        new student().setVisible(true);
+        new student(this).setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     
