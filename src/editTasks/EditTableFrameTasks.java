@@ -15,6 +15,7 @@ import java.util.List;
 import menu.menu_headman;
 import services.ControlsService;
 import services.SubjectsService;
+import services.TasksService;
 
 /**
  *
@@ -132,6 +133,7 @@ public class EditTableFrameTasks extends javax.swing.JFrame {
         parent.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // edit
         
@@ -156,6 +158,18 @@ public class EditTableFrameTasks extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    public void repaint_table(){
+        ModelTasks newmodel = new ModelTasks();
+         
+       
+        List<Tasks> l = new TasksService().findAll();
+       
+       for (Tasks t: l)
+        {
+            newmodel.appendElem(t);
+        }
+        jTable1.setModel(newmodel);
+    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

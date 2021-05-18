@@ -8,7 +8,9 @@ package editTeachers;
 
 import entity.Teachers;
 import java.util.List;
+import javax.swing.table.DefaultTableModel;
 import menu.menu_headman;
+import services.TeachersService;
 
 /**
  *
@@ -127,6 +129,7 @@ public class EditTableFrameTeachers extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // back
         
@@ -135,7 +138,18 @@ public class EditTableFrameTeachers extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
-   
+   public void repaint_table(){
+        
+      
+       ModelTeachers newmodel = new ModelTeachers();
+             
+       List <Teachers> l = new TeachersService().findAll();
+       for (Teachers teac: l)
+        {
+            newmodel.appendElem(teac);
+        }
+        jTable1.setModel(newmodel);
+   }   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

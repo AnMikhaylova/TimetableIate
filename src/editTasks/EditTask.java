@@ -140,7 +140,8 @@ public class EditTask extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // back
         this.setVisible(false);
-        this.parent.setVisible(true);
+        parent.repaint_table();
+        parent.setVisible(true);
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
