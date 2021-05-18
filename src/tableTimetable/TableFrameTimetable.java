@@ -5,10 +5,10 @@
  */
 package tableTimetable;
 
+import entity.Student;
 import entity.TimetableIate;
 import java.util.List;
 import javax.swing.JFrame;
-import menu.menu_student;
 
 /**
  *
@@ -23,12 +23,14 @@ public class TableFrameTimetable extends javax.swing.JFrame {
     private ModelTimetable timetablemodelThu = new ModelTimetable();
     private ModelTimetable timetablemodelFri = new ModelTimetable();
     private JFrame parent;
+    private Student student;
 
-    public TableFrameTimetable(JFrame p, List<TimetableIate> l) {
+    public TableFrameTimetable(JFrame p, List<TimetableIate> l, Student s) {
         initComponents();
 
         this.list = l;
         this.parent = p;
+        this.student = s;
         this.setLocationRelativeTo(p);
 
         for (TimetableIate time : list) {

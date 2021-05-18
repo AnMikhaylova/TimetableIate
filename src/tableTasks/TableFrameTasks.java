@@ -5,6 +5,7 @@
  */
 package tableTasks;
 
+import entity.Student;
 import entity.Tasks;
 import java.util.List;
 import menu.menu_student;
@@ -18,12 +19,14 @@ public class TableFrameTasks extends javax.swing.JFrame {
     private List<Tasks> list; 
     private ModelTasks tasksmodel = new ModelTasks();
     private menu_student parent;
+    private Student student;
     
-    public TableFrameTasks(menu_student p, List<Tasks> l) {
+    public TableFrameTasks(menu_student p, List<Tasks> l, Student s) {
         initComponents();
         this.setLocationRelativeTo(p);
         this.list = l;
         this.parent = p;
+        this.student = s;
         
         for (Tasks t: list)
         {

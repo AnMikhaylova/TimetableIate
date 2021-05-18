@@ -6,6 +6,7 @@
 package Authorization;
 
 import entity.Groups;
+import entity.Student;
 import entity.Teams;
 import java.util.List;
 import menu.menu_student;
@@ -145,8 +146,10 @@ public class student extends javax.swing.JFrame {
         // enter
         Groups gr = new GroupsService().findByName((String)jComboBox1.getSelectedItem());
         Teams team = new TeamsService().findByName((String) jComboBox2.getSelectedItem()); 
+        Student s = new Student(gr, team);
+        
         this.setVisible(false);
-        new menu_student(this, gr,team).setVisible(true);
+        new menu_student(this, s).setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

@@ -7,6 +7,7 @@ package editTasks;
 
 
 import entity.Controls;
+import entity.Student;
 import entity.Subjects;
 import entity.Tasks;
 import java.sql.Date;
@@ -24,12 +25,14 @@ public class EditTableFrameTasks extends javax.swing.JFrame {
     private List<Tasks> list; 
     private ModelTasks tasksmodel = new ModelTasks();
     private menu_headman parent;
+    private Student student;
     
-    public EditTableFrameTasks(menu_headman p, List<Tasks> l) {
+    public EditTableFrameTasks(menu_headman p, List<Tasks> l, Student s) {
         initComponents();
         this.setLocationRelativeTo(p);
         this.list = l;
         this.parent = p;
+        this.student = s;
         
         for (Tasks t: list)
         {

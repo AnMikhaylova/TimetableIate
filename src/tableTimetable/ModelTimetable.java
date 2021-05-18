@@ -8,6 +8,7 @@ package tableTimetable;
 import javax.swing.table.DefaultTableModel;
 import entity.TimetableIate;
 import java.util.ArrayList;
+import java.sql.Date;
 
 /**
  *
@@ -16,8 +17,8 @@ import java.util.ArrayList;
 public class ModelTimetable extends DefaultTableModel{
 
     private ArrayList<TimetableIate> data = new ArrayList<>();
-    private String[] colNames = {"Periods", "Subject", "Class", "Team", "Audience", "Teachers"};
-    private Class[] colClasses = {Integer.class, String.class, String.class, String.class, String.class, String.class};
+    private String[] colNames = {"Period begining", "Period ending", "Parity","Subject", "Class", "Team", "Teachers", "Audience", };
+    private Class[] colClasses = {Date.class, Date.class, String.class, String.class, String.class, String.class, String.class};
 
     public void appendElem(TimetableIate time){
         data.add(time);
@@ -29,12 +30,14 @@ public class ModelTimetable extends DefaultTableModel{
         if(data == null || data.isEmpty())return null;
         TimetableIate time = data.get(row);
         switch(column){
-            case 0: return time.getPeriods().getPeriodNum();
-            case 1: return time.getSubjects().getSubject();
-            case 2: return time.getClasses().getClass_name();
-            case 3: return time.getTeams().getTeam();
-            case 4: return time.getAuditoriums().getAuditorium();
-            default: return time.getTeachers().getTeacherFio();
+            case 0: return time.getPeriods().getBegining();
+            case 1: return time.getPeriods().getEnding();
+            case 2: return time.getParity().getWeek();
+            case 3: return time.getSubjects().getSubject();
+            case 4: return time.getClasses().getClass_name();
+            case 5: return time.getTeams().getTeam();
+            case 6: return time.getTeachers().getTeacherFio();
+            default: return time.getAuditoriums().getAuditorium();
         }
     }
 
@@ -50,7 +53,7 @@ public class ModelTimetable extends DefaultTableModel{
 
     @Override
     public int getColumnCount() {
-        return 6;
+        return 8;
     }
 
     @Override

@@ -6,6 +6,7 @@
 package Authorization;
 
 import entity.Groups;
+import entity.Student;
 import entity.Teams;
 import entity.Users;
 import java.math.BigInteger;
@@ -203,13 +204,14 @@ public class headman extends javax.swing.JFrame {
         Groups gr = new GroupsService().findByName((String)jComboBox1.getSelectedItem());
         Teams team = new TeamsService().findByName((String) jComboBox2.getSelectedItem()); 
         
+        Student s = new Student(gr, team);
         UsersService us = new UsersService();
         List <Users>list = us.findAll();
         
         for (Users a: list){
             if (a.getHpassword().equals(hashpasw)){
                 this.setVisible(false);
-                new menu_headman(this, gr,team).setVisible(true);
+                new menu_headman(this, s).setVisible(true);
             }
         
         }

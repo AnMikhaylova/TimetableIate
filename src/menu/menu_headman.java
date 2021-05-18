@@ -8,10 +8,9 @@ package menu;
 import Authorization.headman;
 import editTasks.EditTableFrameTasks;
 import editTeachers.EditTableFrameTeachers;
-import entity.Groups;
+import entity.Student;
 import entity.Tasks;
 import entity.Teachers;
-import entity.Teams;
 import entity.TimetableIate;
 import java.util.List;
 import services.TasksService;
@@ -26,20 +25,18 @@ import tableTimetable.TableFrameTimetable;
  */
 public class menu_headman extends javax.swing.JFrame {
     
-    private Groups group;
-    private Teams team;
+    private Student student;
     private headman parent;
     
 
     /**
      * Creates new form menu_headman
      */
-    public menu_headman(headman p, Groups group, Teams team) {
+    public menu_headman(headman p, Student s) {
         initComponents();
         this.parent = p;
         this.setLocationRelativeTo(parent);
-        this.group = group;
-        this.team = team;
+        this.student = s;
     }
 
     /**
@@ -137,7 +134,7 @@ public class menu_headman extends javax.swing.JFrame {
         TasksService t = new TasksService();
         List<Tasks> list = t.findAll();
         this.setVisible(false);
-        new EditTableFrameTasks(this, list).setVisible(true);
+        new EditTableFrameTasks(this, list, student).setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -146,7 +143,7 @@ public class menu_headman extends javax.swing.JFrame {
         TimetableIateService ti =  new TimetableIateService();
         List<TimetableIate> list = ti.findAll();
         this.setVisible(false);
-        new TableFrameTimetable(this, list).setVisible(true);
+        new TableFrameTimetable(this, list, student).setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
