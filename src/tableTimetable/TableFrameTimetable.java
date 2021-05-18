@@ -34,43 +34,78 @@ public class TableFrameTimetable extends javax.swing.JFrame {
         this.setLocationRelativeTo(p);
 
         for (TimetableIate time : list) {
-            
-            switch (time.getWeekdays().getWeekday()) {
 
-                case "Понедельник":
+            if ("Вся группа".equals(student.getTeam().getTeam())) {
 
-                    timetablemodelMon.appendElem(time);
-                    break;
+                switch (time.getWeekdays().getWeekday()) {
 
-                case "Вторник":
+                    case "Понедельник":
 
-                    timetablemodelTue.appendElem(time);
-                    break;
+                        timetablemodelMon.appendElem(time);
+                        break;
 
-                case "Среда":
+                    case "Вторник":
 
-                    timetablemodelWed.appendElem(time);
-                    break;
+                        timetablemodelTue.appendElem(time);
+                        break;
 
-                case "Четверг":
+                    case "Среда":
 
-                    timetablemodelThu.appendElem(time);
-                    break;
+                        timetablemodelWed.appendElem(time);
+                        break;
 
-                default:
+                    case "Четверг":
 
-                    timetablemodelFri.appendElem(time);
-                    break;
+                        timetablemodelThu.appendElem(time);
+                        break;
 
+                    default:
+
+                        timetablemodelFri.appendElem(time);
+                        break;
+
+                }
+
+            } else {
+
+                if ((time.getTeams().getTeam().equals(student.getTeam().getTeam())) || ("Вся группа".equals(time.getTeams().getTeam()))) {
+                    switch (time.getWeekdays().getWeekday()) {
+
+                        case "Понедельник":
+
+                            timetablemodelMon.appendElem(time);
+                            break;
+
+                        case "Вторник":
+
+                            timetablemodelTue.appendElem(time);
+                            break;
+
+                        case "Среда":
+
+                            timetablemodelWed.appendElem(time);
+                            break;
+
+                        case "Четверг":
+
+                            timetablemodelThu.appendElem(time);
+                            break;
+
+                        default:
+
+                            timetablemodelFri.appendElem(time);
+                            break;
+
+                    }
+                }
             }
-
-            jTable1.setModel(timetablemodelMon);
-            jTable2.setModel(timetablemodelTue);
-            jTable3.setModel(timetablemodelWed);
-            jTable4.setModel(timetablemodelThu);
-            jTable5.setModel(timetablemodelFri);
-
         }
+
+        jTable1.setModel(timetablemodelMon);
+        jTable2.setModel(timetablemodelTue);
+        jTable3.setModel(timetablemodelWed);
+        jTable4.setModel(timetablemodelThu);
+        jTable5.setModel(timetablemodelFri);
     }
 
     /**
@@ -257,7 +292,7 @@ public class TableFrameTimetable extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // back
-        
+
         this.setVisible(false);
         parent.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
