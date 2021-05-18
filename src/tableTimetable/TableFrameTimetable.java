@@ -7,8 +7,14 @@ package tableTimetable;
 
 import entity.Student;
 import entity.TimetableIate;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFrame;
+import javax.swing.RowSorter;
+import javax.swing.RowSorter.SortKey;
+import javax.swing.SortOrder;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -100,12 +106,42 @@ public class TableFrameTimetable extends javax.swing.JFrame {
                 }
             }
         }
-
+        
+        ArrayList<SortKey> keys=new ArrayList<>(); 
+        keys.add(new SortKey(0, SortOrder.DESCENDING));  
+        keys.add(new SortKey(0, SortOrder.DESCENDING));
+        
         jTable1.setModel(timetablemodelMon);
+        RowSorter<TableModel> sorter1 = new TableRowSorter<>(timetablemodelMon);
+        sorter1.setSortKeys(keys);                                   
+        sorter1.toggleSortOrder(0);  
+        jTable1.setRowSorter(sorter1);
+        
         jTable2.setModel(timetablemodelTue);
+        RowSorter<TableModel> sorter2 = new TableRowSorter<>(timetablemodelTue);
+        sorter2.setSortKeys(keys);                                   
+        sorter2.toggleSortOrder(0);
+        jTable2.setRowSorter(sorter2);
+        
         jTable3.setModel(timetablemodelWed);
+        RowSorter<TableModel> sorter3 = new TableRowSorter<>(timetablemodelWed);
+        sorter3.setSortKeys(keys);                                   
+        sorter3.toggleSortOrder(0);
+        jTable3.setRowSorter(sorter3);
+        
         jTable4.setModel(timetablemodelThu);
+        RowSorter<TableModel> sorter4 = new TableRowSorter<>(timetablemodelThu);
+        sorter4.setSortKeys(keys);                                   
+        sorter4.toggleSortOrder(0);
+        jTable4.setRowSorter(sorter4);
+        
         jTable5.setModel(timetablemodelFri);
+        RowSorter<TableModel> sorter5 = new TableRowSorter<>(timetablemodelFri);
+        sorter5.setSortKeys(keys);                                   
+        sorter5.toggleSortOrder(0);
+        jTable5.setRowSorter(sorter5);
+        
+        
     }
 
     /**
