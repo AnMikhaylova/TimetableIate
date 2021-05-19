@@ -183,7 +183,14 @@ public class EditTableFrameTasks extends javax.swing.JFrame {
         List<Tasks> l = new TasksService().findAll();
 
         for (Tasks t : l) {
-            newmodel.appendElem(t);
+            if (t.getGroups().getGroupName().equals(student.getGroup().getGroupName())) {
+                if ("Вся группа".equals(student.getTeam().getTeam())) {
+                    newmodel.appendElem(t);
+                } else if ((t.getTeams().getTeam().equals(student.getTeam().getTeam())) || ("Вся группа".equals(t.getTeams().getTeam()))) {
+                    newmodel.appendElem(t);
+                }
+            }
+
         }
         jTable1.setModel(newmodel);
     }

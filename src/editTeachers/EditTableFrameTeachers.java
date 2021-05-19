@@ -5,7 +5,6 @@
  */
 package editTeachers;
 
-
 import entity.Teachers;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -18,24 +17,21 @@ import services.TeachersService;
  */
 public class EditTableFrameTeachers extends javax.swing.JFrame {
 
-    private List<Teachers> list; 
+    private List<Teachers> list;
     private ModelTeachers teachersmodel = new ModelTeachers();
     private menu_headman parent;
-    
+
     public EditTableFrameTeachers(menu_headman p, List<Teachers> l) {
         initComponents();
         this.list = l;
         this.parent = p;
         this.setLocationRelativeTo(p);
-        
-        for (Teachers teac: list)
-        {
+
+        for (Teachers teac : list) {
             teachersmodel.appendElem(teac);
         }
         jTable1.setModel(teachersmodel);
     }
-
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -120,36 +116,35 @@ public class EditTableFrameTeachers extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // edit
         int row = jTable1.getSelectedRow();
-        String FIO = jTable1.getModel().getValueAt(row,0).toString();
-        String email =  jTable1.getModel().getValueAt(row,1).toString();
-        Teachers selTeacher =  new Teachers(FIO, email);
+        String FIO = jTable1.getModel().getValueAt(row, 0).toString();
+        //String email = "pochta";
+        String email = jTable1.getModel().getValueAt(row, 1).toString();
+        Teachers selTeacher = new Teachers(FIO, email);
         this.setVisible(false);
         new EditTeacher(this, selTeacher).setVisible(true);
-        
-        
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    
+
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // back
-        
+
         this.setVisible(false);
         parent.setVisible(true);
-        
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
-   public void repaint_table(){
-        
-      
-       ModelTeachers newmodel = new ModelTeachers();
-             
-       List <Teachers> l = new TeachersService().findAll();
-       for (Teachers teac: l)
-        {
+    public void repaint_table() {
+
+        ModelTeachers newmodel = new ModelTeachers();
+
+        List<Teachers> l = new TeachersService().findAll();
+        for (Teachers teac : l) {
             newmodel.appendElem(teac);
         }
         jTable1.setModel(newmodel);
-   }   
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
