@@ -7,7 +7,12 @@ package tableTasks;
 
 import entity.Student;
 import entity.Tasks;
+import java.util.ArrayList;
 import java.util.List;
+import javax.swing.RowSorter;
+import javax.swing.SortOrder;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import menu.menu_student;
 
 /**
@@ -16,23 +21,39 @@ import menu.menu_student;
  */
 public class TableFrameTasks extends javax.swing.JFrame {
 
-    private List<Tasks> list; 
+    private List<Tasks> list;
     private ModelTasks tasksmodel = new ModelTasks();
     private menu_student parent;
     private Student student;
-    
+
     public TableFrameTasks(menu_student p, List<Tasks> l, Student s) {
         initComponents();
         this.setLocationRelativeTo(p);
         this.list = l;
         this.parent = p;
         this.student = s;
-        
-        for (Tasks t: list)
-        {
-            tasksmodel.appendElem(t);
+
+        for (Tasks t : list) {
+            if (t.getGroups().getGroupName().equals(student.getGroup().getGroupName())) {
+                if ("Вся группа".equals(student.getTeam().getTeam())) {
+                    tasksmodel.appendElem(t);
+                } else if ((t.getTeams().getTeam().equals(student.getTeam().getTeam())) || ("Вся группа".equals(t.getTeams().getTeam()))) {
+                    tasksmodel.appendElem(t);
+                }
+            }
+
         }
+        
+        ArrayList<RowSorter.SortKey> keys = new ArrayList<>();
+        keys.add(new RowSorter.SortKey(0, SortOrder.DESCENDING));
+        keys.add(new RowSorter.SortKey(0, SortOrder.DESCENDING));
+        
         jTable1.setModel(tasksmodel);
+        RowSorter<TableModel> sorter1 = new TableRowSorter<>(tasksmodel);
+        sorter1.setSortKeys(keys);
+        sorter1.toggleSortOrder(0);
+        jTable1.setRowSorter(sorter1);
+        
     }
 
     /**
@@ -108,12 +129,11 @@ public class TableFrameTasks extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // back
-        
+
         this.setVisible(false);
         parent.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

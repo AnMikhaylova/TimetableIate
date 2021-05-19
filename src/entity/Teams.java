@@ -31,6 +31,9 @@ public class Teams implements java.io.Serializable {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "teams")
     private Set<TimetableIate> timetableIates = new HashSet(0);
+    
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "teams")
+    private Set<Tasks> tasks = new HashSet(0);
 
     public Teams() {
     }
@@ -40,10 +43,11 @@ public class Teams implements java.io.Serializable {
         this.team = team;
     }
 
-    public Teams(int teamId, String team, Set<TimetableIate> timetableIates) {
+    public Teams(int teamId, String team, Set<TimetableIate> timetableIates, Set<Tasks> task) {
         this.teamId = teamId;
         this.team = team;
         this.timetableIates = timetableIates;
+        this.tasks = task;
     }
 
     public int getTeamId() {
@@ -69,5 +73,15 @@ public class Teams implements java.io.Serializable {
     public void setTimetableIates(Set<TimetableIate> timetableIates) {
         this.timetableIates = timetableIates;
     }
+
+    public Set<Tasks> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(Set<Tasks> tasks) {
+        this.tasks = tasks;
+    }
+    
+    
 
 }

@@ -5,13 +5,17 @@
  */
 package editTasks;
 
-
 import entity.Controls;
 import entity.Student;
 import entity.Subjects;
 import entity.Tasks;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
+import javax.swing.RowSorter;
+import javax.swing.SortOrder;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import menu.menu_headman;
 import services.ControlsService;
 import services.SubjectsService;
@@ -23,23 +27,38 @@ import services.TasksService;
  */
 public class EditTableFrameTasks extends javax.swing.JFrame {
 
-    private List<Tasks> list; 
+    private List<Tasks> list;
     private ModelTasks tasksmodel = new ModelTasks();
     private menu_headman parent;
     private Student student;
-    
+
     public EditTableFrameTasks(menu_headman p, List<Tasks> l, Student s) {
         initComponents();
         this.setLocationRelativeTo(p);
         this.list = l;
         this.parent = p;
         this.student = s;
-        
-        for (Tasks t: list)
-        {
-            tasksmodel.appendElem(t);
+
+        for (Tasks t : list) {
+            if (t.getGroups().getGroupName().equals(student.getGroup().getGroupName())) {
+                if ("Вся группа".equals(student.getTeam().getTeam())) {
+                    tasksmodel.appendElem(t);
+                } else if ((t.getTeams().getTeam().equals(student.getTeam().getTeam())) || ("Вся группа".equals(t.getTeams().getTeam()))) {
+                    tasksmodel.appendElem(t);
+                }
+            }
+
         }
+        
+        ArrayList<RowSorter.SortKey> keys = new ArrayList<>();
+        keys.add(new RowSorter.SortKey(0, SortOrder.DESCENDING));
+        keys.add(new RowSorter.SortKey(0, SortOrder.DESCENDING));
+        
         jTable1.setModel(tasksmodel);
+        RowSorter<TableModel> sorter1 = new TableRowSorter<>(tasksmodel);
+        sorter1.setSortKeys(keys);
+        sorter1.toggleSortOrder(0);
+        jTable1.setRowSorter(sorter1);
     }
 
     /**
@@ -128,49 +147,47 @@ public class EditTableFrameTasks extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // back
-        
+
         this.setVisible(false);
         parent.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    
+
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // edit
-        
+
         int row = jTable1.getSelectedRow();
-        
-        Date deadline = Date.valueOf(jTable1.getModel().getValueAt(row,0).toString());
-        
-        String subject = jTable1.getModel().getValueAt(row,1).toString();
-        String control = jTable1.getModel().getValueAt(row,2).toString();
-        String desc = jTable1.getModel().getValueAt(row,3).toString();
-        
+
+        Date deadline = Date.valueOf(jTable1.getModel().getValueAt(row, 0).toString());
+
+        String subject = jTable1.getModel().getValueAt(row, 1).toString();
+        String control = jTable1.getModel().getValueAt(row, 2).toString();
+        String desc = jTable1.getModel().getValueAt(row, 3).toString();
+
         SubjectsService s = new SubjectsService();
         Subjects subj = s.findByName(subject);
-        
-        ControlsService c = new ControlsService();        
+
+        ControlsService c = new ControlsService();
         Controls cont = c.findByName(control);
-        
-        Tasks selTask = new Tasks(cont, subj, deadline, desc);
+
+        Tasks selTask = new Tasks(cont, subj, deadline, desc, student.getGroup(), student.getTeam());
         this.setVisible(false);
         new EditTask(this, selTask).setVisible(true);
-        
-        
+
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    public void repaint_table(){
+    public void repaint_table() {
         ModelTasks newmodel = new ModelTasks();
-         
-       
+
         List<Tasks> l = new TasksService().findAll();
-       
-       for (Tasks t: l)
-        {
+
+        for (Tasks t : l) {
             newmodel.appendElem(t);
         }
         jTable1.setModel(newmodel);
     }
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

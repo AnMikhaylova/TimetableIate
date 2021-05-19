@@ -155,7 +155,7 @@ public class EditTask extends javax.swing.JFrame {
         ControlsService c = new ControlsService();
         Controls newControl = c.findByName((String) this.jComboBox2.getSelectedItem());
 
-        Tasks editTask = new Tasks(newControl, selTask.getSubjects(), newDeadline, newDesc);
+        Tasks editTask = new Tasks(newControl, selTask.getSubjects(), newDeadline, newDesc, selTask.getGroups(), selTask.getTeams());
         TasksService t = new TasksService();
         List<Tasks> allTasks = t.findAll();
 

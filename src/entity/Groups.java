@@ -31,6 +31,9 @@ public class Groups implements java.io.Serializable {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "groups")
     private Set<TimetableIate> timetableIates = new HashSet(0);
+    
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "groups")
+    private Set<Tasks> tasks = new HashSet(0);
 
     public Groups() {
     }
@@ -40,10 +43,11 @@ public class Groups implements java.io.Serializable {
         this.groupName = groupName;
     }
 
-    public Groups(int groupId, String groupName, Set<TimetableIate> timetableIates) {
+    public Groups(int groupId, String groupName, Set<TimetableIate> timetableIates, Set<Tasks> task) {
         this.groupId = groupId;
         this.groupName = groupName;
         this.timetableIates = timetableIates;
+        this.tasks = task; 
     }
 
     public int getGroupId() {
@@ -69,5 +73,15 @@ public class Groups implements java.io.Serializable {
     public void setTimetableIates(Set<TimetableIate> timetableIates) {
         this.timetableIates = timetableIates;
     }
+
+    public Set<Tasks> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(Set<Tasks> tasks) {
+        this.tasks = tasks;
+    }
+    
+    
 
 }

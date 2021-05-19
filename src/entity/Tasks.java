@@ -42,6 +42,14 @@ public class Tasks implements java.io.Serializable {
 
     @Column(name = "description")
     private String description;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "group_id", nullable = false)
+    private Groups groups;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "team_id", nullable = false)
+    private Teams teams;
 
     public Tasks() {
     }
@@ -53,11 +61,13 @@ public class Tasks implements java.io.Serializable {
         this.deadline = deadline;
     }
 
-    public Tasks(Controls controls, Subjects subjects, Date deadline, String description) {
+    public Tasks(Controls controls, Subjects subjects, Date deadline, String description, Groups group, Teams team) {
         this.controls = controls;
         this.subjects = subjects;
         this.deadline = deadline;
         this.description = description;
+        this.groups = group;
+        this.teams = team;
     }
 
     public int getTaskId() {
@@ -99,5 +109,23 @@ public class Tasks implements java.io.Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public Groups getGroups() {
+        return groups;
+    }
+
+    public void setGroups(Groups groups) {
+        this.groups = groups;
+    }
+
+    public Teams getTeams() {
+        return teams;
+    }
+
+    public void setTeams(Teams teams) {
+        this.teams = teams;
+    }
+    
+    
 
 }
