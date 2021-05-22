@@ -50,15 +50,8 @@ public class EditTableFrameTasks extends javax.swing.JFrame {
 
         }
         
-        ArrayList<RowSorter.SortKey> keys = new ArrayList<>();
-        keys.add(new RowSorter.SortKey(0, SortOrder.DESCENDING));
-        keys.add(new RowSorter.SortKey(0, SortOrder.DESCENDING));
         
         jTable1.setModel(tasksmodel);
-        RowSorter<TableModel> sorter1 = new TableRowSorter<>(tasksmodel);
-        sorter1.setSortKeys(keys);
-        sorter1.toggleSortOrder(0);
-        jTable1.setRowSorter(sorter1);
     }
 
     /**
@@ -79,6 +72,7 @@ public class EditTableFrameTasks extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("ЗАДАНИЯ");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -114,18 +108,15 @@ public class EditTableFrameTasks extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(163, 163, 163)
-                        .addComponent(jLabel1)
-                        .addGap(0, 114, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 258, Short.MAX_VALUE)
+                                .addComponent(jButton2)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -192,7 +183,11 @@ public class EditTableFrameTasks extends javax.swing.JFrame {
             }
 
         }
+        
+        
+        
         jTable1.setModel(newmodel);
+        
     }
 
 

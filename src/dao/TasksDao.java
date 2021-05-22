@@ -23,32 +23,47 @@ public class TasksDao {
     
     
     //save
-    public void save(Tasks task) {
+    public boolean save(Tasks task) {
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
         session.save(task);
         tx1.commit();
-        session.close();        
+        if (tx1.wasCommitted()) {
+            session.close();
+            return true;
+        } else {
+            return false;
+        }
     }
     
     //update
-    public void update(Tasks task) {
-            Session session = NewHibernateUtil.getSessionFactory().openSession();
+    public boolean update(Tasks task) {
+        Session session = NewHibernateUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
         session.update(task);
         tx1.commit();
-        session.close();
+        if (tx1.wasCommitted()) {
+            session.close();
+            return true;
+        } else {
+            return false;
+        }
     }
     
     
     
     //delete?
-     public void delete(Tasks task) {
+     public boolean delete(Tasks task) {
          Session session = NewHibernateUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
         session.delete(task);
         tx1.commit();
-        session.close();     
+        if (tx1.wasCommitted()) {
+            session.close();
+            return true;
+        } else {
+            return false;
+        }   
      }
      
     //findAll

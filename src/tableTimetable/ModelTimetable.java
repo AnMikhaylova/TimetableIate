@@ -17,7 +17,7 @@ import java.sql.Date;
 public class ModelTimetable extends DefaultTableModel{
 
     private ArrayList<TimetableIate> data = new ArrayList<>();
-    private String[] colNames = {"Period begining", "Period ending", "Parity","Subject", "Class", "Team", "Teachers", "Audience", };
+    private String[] colNames = {"Начало пары", "Конец пары", "Чётность","Предмет", "Вид занятия", "Состав группы", "Преподаватель", "Аудитория", };
     private Class[] colClasses = {Date.class, Date.class, String.class, String.class, String.class, String.class, String.class};
 
     public void appendElem(TimetableIate time){

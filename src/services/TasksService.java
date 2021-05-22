@@ -28,18 +28,18 @@ public class TasksService {
     }
     
     //save
-    public void save(Tasks task) {
-        tasksDao.save(task);
+    public boolean save(Tasks task) {
+        return tasksDao.save(task);
     }
     
     //update
-    public void update(Tasks task) {
-        tasksDao.update(task);
+    public boolean update(Tasks task) {
+        return tasksDao.update(task);
     }
     
     //delete?
-     public void delete(Tasks task) {
-        tasksDao.delete(task);
+     public boolean delete(Tasks task) {
+        return tasksDao.delete(task);
      }
      
     //findAll

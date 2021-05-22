@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
 public class ModelTasks extends DefaultTableModel{
     
     private ArrayList<Tasks> data = new ArrayList<>();
-    private String[] colNames = {"Deadline", "Subjects", "Type of control", "Description"};
+    private String[] colNames = {"Срок сдачи", "Предмет", "Вид контроля", "Описание"};
     private Class[] colClasses = {Date.class, String.class, String.class, String.class};
     
     public void appendElem(Tasks t){

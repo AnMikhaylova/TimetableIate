@@ -10,6 +10,7 @@ import entity.Controls;
 import entity.Tasks;
 import java.sql.Date;
 import java.util.List;
+import javax.swing.JOptionPane;
 import services.ControlsService;
 import services.TasksService;
 
@@ -171,11 +172,24 @@ public class EditTask extends javax.swing.JFrame {
 
             if ((aDate.equals(selDate)) && (aControl.equals(selControl)) && (aSubj.equals(selSubj)) && (aDesc.equals(selDesc))) {
                 selTask.setTaskId(a.getTaskId());
-                
+
             }
         }
-        t.delete(selTask);
-        t.save(editTask);
+        
+        boolean flag1 = false;
+        flag1 = t.delete(selTask);
+        if (!flag1) {
+            JOptionPane.showMessageDialog(this, "Что-то пошло не так...", "Ошибка", JOptionPane.WARNING_MESSAGE);
+        } else {
+
+            boolean flag2 = false;
+            flag2 = t.save(editTask);
+            if (flag2) {
+                JOptionPane.showMessageDialog(this, "Успешно отредактировано");
+            } else {
+                JOptionPane.showMessageDialog(this, "Что-то пошло не так...", "Ошибка", JOptionPane.WARNING_MESSAGE);
+            }
+        }
 
 
     }//GEN-LAST:event_jButton1ActionPerformed

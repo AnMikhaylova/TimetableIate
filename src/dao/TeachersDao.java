@@ -16,49 +16,60 @@ import utils.NewHibernateUtil;
  * @author tassy
  */
 public class TeachersDao {
+
     //findbyId
-    public Teachers findById(int id){
-        return (Teachers)NewHibernateUtil.getSessionFactory().openSession().get(Teachers.class, id);
+    public Teachers findById(int id) {
+        return (Teachers) NewHibernateUtil.getSessionFactory().openSession().get(Teachers.class, id);
     }
-    
+
     //findbyName
-    public Teachers findByName(String name){ 
+    public Teachers findByName(String name) {
         String query = "FROM Teachers T WHERE T.teacherFio  =" + "'" + name + "'";
-        return (Teachers)NewHibernateUtil.getSessionFactory().openSession().createQuery(query).uniqueResult();
-       
+        return (Teachers) NewHibernateUtil.getSessionFactory().openSession().createQuery(query).uniqueResult();
+
     }
-    
+
     //save
-    public void save(Teachers teacher) {
+    public boolean save(Teachers teacher) {
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
         session.save(teacher);
         tx1.commit();
-        session.close();        
+        if (tx1.wasCommitted()) {
+            session.close();
+            return true;
+        } else {
+            return false;
+        }
     }
-    
+
     //update
-    public void update(Teachers teacher) {
-            Session session = NewHibernateUtil.getSessionFactory().openSession();
+    public boolean update(Teachers teacher) {
+        Session session = NewHibernateUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
         session.update(teacher);
         tx1.commit();
-        session.close();
+        if (tx1.wasCommitted()) {
+            session.close();
+            return true;
+        } else {
+            return false;
+        }
     }
-    
+
     //delete?
-     public void delete(Teachers teacher) {
-         Session session = NewHibernateUtil.getSessionFactory().openSession();
+    public void delete(Teachers teacher) {
+        Session session = NewHibernateUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
         session.delete(teacher);
         tx1.commit();
-        session.close();     
-     }
-     
+        session.close();
+    }
+
     //findAll
-     public List<Teachers> findAll() {
-         List<Teachers> t = (List<Teachers>)NewHibernateUtil.getSessionFactory().openSession().createQuery("From Teachers").list();
+    public List<Teachers> findAll() {
+        List<Teachers> t = (List<Teachers>) NewHibernateUtil.getSessionFactory().openSession().createQuery("From Teachers").list();
         return t;
-     
-     }
+
+    }
 }

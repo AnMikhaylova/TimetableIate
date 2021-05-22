@@ -32,13 +32,13 @@ public class TeachersService {
     }
     
     //save
-    public void save(Teachers teacher) {
-        teachersDao.save(teacher);
+    public boolean save(Teachers teacher) {
+        return teachersDao.save(teacher);
     }
     
     //update
-    public void update(Teachers teacher) {
-        teachersDao.update(teacher);
+    public boolean update(Teachers teacher) {
+        return teachersDao.update(teacher);
     }
     
     //delete?

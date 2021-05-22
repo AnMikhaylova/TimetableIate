@@ -6,6 +6,7 @@
 package editTeachers;
 
 import entity.Teachers;
+import javax.swing.JOptionPane;
 import services.TeachersService;
 
 /**
@@ -127,7 +128,14 @@ public class EditTeacher extends javax.swing.JFrame {
         selTeacher.setTeacherId(t.findByName(selTeacher.getTeacherFio()).getTeacherId());
         Teachers edTeacher = new Teachers(selTeacher.getTeacherId(), selTeacher.getTeacherFio(), newEmail);
 
-        t.update(edTeacher);
+        boolean flag = false;
+        flag = t.update(edTeacher);
+        if (flag){
+            JOptionPane.showMessageDialog(this, "Успешно отредактировано");
+        }
+        else {
+            JOptionPane.showMessageDialog(this,"Что-то пошло не так...", "Ошибка", JOptionPane.WARNING_MESSAGE);
+        }
 
 
     }//GEN-LAST:event_jButton1ActionPerformed
